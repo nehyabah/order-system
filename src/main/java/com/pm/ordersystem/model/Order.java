@@ -1,13 +1,14 @@
 package com.pm.ordersystem.model;
 
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
-
+@Entity
+@Table(name = "customer_order")
 public class Order {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long id;
     public int quantity;
     public double totalPrice;
@@ -31,5 +32,37 @@ public class Order {
         this.product = product;
         this.orderTime = orderTime;
         this.status = OrderStatus.PENDING;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public double getTotalPrice() {
+        return totalPrice;
+    }
+
+    public String getCustomerEmail() {
+        return customerEmail;
+    }
+
+    public LocalDateTime getOrderTime() {
+        return orderTime;
+    }
+
+    public OrderStatus getStatus() {
+        return status;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setStatus(OrderStatus status) {
+        this.status = status;
     }
 }
